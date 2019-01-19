@@ -18,7 +18,9 @@ class DrawerNavigation extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 title: Text("Sprint 1"),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/Sprint');
+                },
               ),
               PopupMenuDivider(),
               ListTile(

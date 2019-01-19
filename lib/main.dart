@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'src/home.dart';
+import 'src/functions.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +13,29 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      onGenerateRoute: routes,
+    );
+  }
+
+  Route routes(RouteSettings settings) {
+    if (settings.name == '/'){
+      return MaterialPageRoute(
+      builder: (context) {
+        return HomePage();
+      },
+    );
+    }
+    else if (settings.name == '/Sprint') {
+      return MaterialPageRoute(
+      builder: (context) {
+        return Functions();
+      },
+    );
+    }
+    return   MaterialPageRoute(
+      builder: (context) {
+        return HomePage();
+      },
     );
   }
 }

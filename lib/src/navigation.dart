@@ -10,7 +10,7 @@ class Navigation extends StatefulWidget {
 }
 
  class NavigationState extends State<Navigation> {
- int _selectedIndex = 1;
+ int _selectedIndex = 0;
  final _widgetOptions = [
    HomePageBody(),
    Text('Index 1: Login'),
