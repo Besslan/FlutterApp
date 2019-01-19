@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
+import 'homePageBody.dart';
 
 class Navigation extends StatefulWidget {
  Navigation({Key key}) : super(key: key);
@@ -11,7 +12,7 @@ class Navigation extends StatefulWidget {
  class NavigationState extends State<Navigation> {
  int _selectedIndex = 1;
  final _widgetOptions = [
-   Text('Index 0: Home'),
+   HomePageBody(),
    Text('Index 1: Login'),
    Text('Index 2: Profile'),
  ];
@@ -35,7 +36,7 @@ class Navigation extends StatefulWidget {
          BottomNavigationBarItem(icon: Icon(Icons.account_box), title: Text('Profile')),
        ],
        currentIndex: _selectedIndex,
-       fixedColor: Colors.deepPurple,
+       fixedColor: Colors.deepPurple, 
        onTap: _onItemTapped,
      ),
    );
