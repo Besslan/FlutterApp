@@ -1,6 +1,38 @@
 import 'package:flutter/material.dart';
 
 class DrawerNavigation extends StatelessWidget {
+  final List<List> weeks = [
+    [
+      'Week One',
+      'Fundamentals',
+      'Comparison',
+      'Variables',
+      'WhileLoop',
+      'ArraysAndForLoop'
+    ],
+    [
+      'Week Two',
+      'Objects',
+      'DataModeling',
+      'HigherOrderEach',
+      'Map',
+      'Filter'
+    ],
+    [
+      'Week Three',
+      'Reduce',
+      'DataModeling',
+      'AbstractClosureDM',
+      'OOP',
+      'HTMLCSSjQuery'
+    ],
+    [
+      'Week Four',
+      'Git',
+      'Testing',
+      'WebDev',
+    ]
+  ];
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -13,108 +45,78 @@ class DrawerNavigation extends StatelessWidget {
               ),
             ),
           ),
-          ExpansionTile(
-            title: Text('Week 1'),
-            children: <Widget>[
-              ListTile(
-                title: Text("Sprint 1"),
-                onTap: () {
-                  Navigator.pushNamed(context, '/Sprint');
-                },
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 2"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 3"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 4"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-            ],
-          ),
-          ExpansionTile(
-            title: Text('Week 2'),
-            children: <Widget>[
-              ListTile(
-                title: Text("Sprint 1"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 2"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 3"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 4"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-            ],
-          ),
-          ExpansionTile(
-            title: Text('Week 3'),
-            children: <Widget>[
-              ListTile(
-                title: Text("Sprint 1"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 2"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 3"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 4"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-            ],
-          ),
-          ExpansionTile(
-            title: Text('Week 4'),
-            children: <Widget>[
-              ListTile(
-                title: Text("Sprint 1"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("SPrint 2"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 3"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-              ListTile(
-                title: Text("Sprint 4"),
-                onTap: () {},
-              ),
-              PopupMenuDivider(),
-            ],
-          ),
+          Column(
+              children: weeks.map((element) {
+            if (element != weeks[weeks.length - 1]) {
+              return ExpansionTile(
+                title: Text(element[0]),
+                children: <Widget>[
+                  ListTile(
+                    title: Text(element[1]),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[1]}');
+                    },
+                  ),
+                  PopupMenuDivider(),
+                  ListTile(
+                    title: Text(element[2]),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[2]}');
+                    },
+                  ),
+                  PopupMenuDivider(),
+                  ListTile(
+                    title: Text(element[3]),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[3]}');
+                    },
+                  ),
+                  PopupMenuDivider(),
+                  ListTile(
+                    title: Text(element[4]),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[4]}');
+                    },
+                  ),
+                  PopupMenuDivider(),
+                  ListTile(
+                    title: Text(element[5]),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[5]}');
+                    },
+                  ),
+                  PopupMenuDivider(),
+                ],
+              );
+            } else {
+              return ExpansionTile(
+                title: Text(element[0]),
+                children: <Widget>[
+                  ListTile(
+                    title: Text(element[1]),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[1]}');
+                    },
+                  ),
+                  PopupMenuDivider(),
+                  ListTile(
+                    title: Text(element[2]),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[2]}');
+                    },
+                  ),
+                  PopupMenuDivider(),
+                  ListTile(
+                    title: Text(element[3]),
+                    onTap: () {},
+                  ),
+                  PopupMenuDivider(
+                    Navigator.pushNamed(context, '/${element[3]}');
+                  ),
+                ],
+              );
+            }
+          }).toList()),
           ExpansionTile(
             title: Text('Quizzes'),
             children: <Widget>[
