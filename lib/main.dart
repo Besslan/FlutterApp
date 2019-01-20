@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       },
     );
     }
-    else if (settings.name == '/Sprint') {
+    else if (settings.name == '/Fundamentals') {
       return MaterialPageRoute(
       builder: (context) {
         return Functions();
