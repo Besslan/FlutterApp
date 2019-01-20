@@ -40,6 +40,7 @@ flutter:
   assets:
    - assets/Logo.png
    - assets/Week2.jpg
+   - assets/small-Logo.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
