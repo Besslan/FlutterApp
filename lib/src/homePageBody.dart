@@ -56,9 +56,10 @@ class HomePageBodyState extends State<HomePageBody> {
             child: Column(
               children: <Widget>[
                 Container(
-                  child: Text(element[0]),
+                  child: Text(element[0],style: TextStyle(fontWeight:FontWeight.bold,fontSize:20.0),),
                   margin: EdgeInsets.all(10.0),
                 ),
+                Divider(),
                 Image.asset(element[1]),
                 Divider(),
                 Container(
