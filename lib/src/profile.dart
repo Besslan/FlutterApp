@@ -45,6 +45,59 @@ class ProfileState extends State<Profile> {
                 ],
               ),
             ),
+            // Container(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: <Widget>[
+            //       Container(
+            //           margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+            //           child: Column(
+            //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //             children: <Widget>[
+            //               RaisedButton(
+            //                 child: Text('Surveys'),
+            //                 onPressed: () {},
+            //               ),
+            //               RaisedButton(
+            //                 child: Text('Emotional'),
+            //                 onPressed: () {},
+            //               ),
+            //               RaisedButton(
+            //                 child: Text('Calander'),
+            //                 onPressed: () {},
+            //               ),
+            //               RaisedButton(
+            //                 child: Text('data'),
+            //                 onPressed: () {},
+            //               ),
+            //             ],
+            //           )),
+            //       Container(
+            //           margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
+            //           child: Column(
+            //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //             children: <Widget>[
+            //               RaisedButton(
+            //                 child: Text('Townhall'),
+            //                 onPressed: () {},
+            //               ),
+            //               RaisedButton(
+            //                 child: Text('Help Desk'),
+            //                 onPressed: () {},
+            //               ),
+            //               RaisedButton(
+            //                 child: Text('data'),
+            //                 onPressed: () {},
+            //               ),
+            //               RaisedButton(
+            //                 child: Text('data'),
+            //                 onPressed: () {},
+            //               ),
+            //             ],
+            //           )),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       );
