@@ -72,27 +72,37 @@ class HomePageBodyState extends State<HomePageBody> {
                   children: <Widget>[
                     ListTile(
                       title: Text(element[3]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[3]}');
+                      },
                     ),
                     PopupMenuDivider(),
                     ListTile(
                       title: Text(element[4]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[4]}');
+                      },
                     ),
                     PopupMenuDivider(),
                     ListTile(
                       title: Text(element[5]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[5]}');
+                      },
                     ),
                     PopupMenuDivider(),
                     ListTile(
                       title: Text(element[6]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[6]}');
+                      },
                     ),
                     PopupMenuDivider(),
                     ListTile(
                       title: Text(element[7]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[7]}');
+                      },
                     ),
                     PopupMenuDivider(),
                   ],
@@ -120,17 +130,23 @@ class HomePageBodyState extends State<HomePageBody> {
                   children: <Widget>[
                     ListTile(
                       title: Text(element[3]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[3]}');
+                      },
                     ),
                     PopupMenuDivider(),
                     ListTile(
                       title: Text(element[4]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[4]}');
+                      },
                     ),
                     PopupMenuDivider(),
                     ListTile(
                       title: Text(element[5]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/${element[5]}');
+                      },
                     ),
                     PopupMenuDivider(),
                   ],
