@@ -108,11 +108,11 @@ class DrawerNavigation extends StatelessWidget {
                   PopupMenuDivider(),
                   ListTile(
                     title: Text(element[3]),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/${element[3]}');
+                    },
                   ),
-                  PopupMenuDivider(
-                    Navigator.pushNamed(context, '/${element[3]}');
-                  ),
+                  PopupMenuDivider(),
                 ],
               );
             }
