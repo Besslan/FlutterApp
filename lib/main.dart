@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'src/home.dart';
-import 'src/functions.dart';
+import 'src/sprints/functions.dart';
 
 void main() => runApp(MyApp());
 
