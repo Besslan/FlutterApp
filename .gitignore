@@ -10,6 +10,11 @@
 .history
 .svn/
 
+# Api key
+google-services.json
+
+
+
 # IntelliJ related
 *.iml
 *.ipr
@@ -36,6 +41,7 @@ build/
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
+android/
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
