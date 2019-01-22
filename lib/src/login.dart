@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'profile.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,8 +14,6 @@ class LoginPageState extends State<LoginPage> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -86,17 +85,18 @@ class LoginPageState extends State<LoginPage> {
         ),
       );
     } else {
-      return 
-      Text('already logged in');
-    } 
+      return Text('already logged in');
+    }
   }
-
 
   Future<void> signIn() async {
     try {
       FirebaseUser user = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: passwprd);
-      // Navigator.pushNamed(context, '/Profile');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Profile(user:user)),
+      );
     } catch (err) {
       print(err.message);
     }

@@ -15,7 +15,7 @@ class NavigationState extends State<Navigation> {
   final _widgetOptions = [
     HomePageBody(),
     LoginPage(),
-    Profile(),
+    // Profile(),
   ];
 
   @override
@@ -35,8 +35,8 @@ class NavigationState extends State<Navigation> {
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(
               icon: Icon(Icons.vpn_key), title: Text('Login')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_box), title: Text('Profile')),
+          // BottomNavigationBarItem(
+          //     icon: Icon(Icons.account_box), title: Text('Profile')),
         ],
         currentIndex: _selectedIndex,
         fixedColor: Colors.deepPurple,

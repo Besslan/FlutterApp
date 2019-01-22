@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'drawer.dart';
 
 class Profile extends StatefulWidget {
+  const Profile({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   ProfileState createState() => new ProfileState();
 }
@@ -8,13 +13,16 @@ class Profile extends StatefulWidget {
 class ProfileState extends State<Profile> {
   bool loggedin = true;
   String profilePicture = 'assets/small-Logo.png';
-  String name = 'Besslan Bzadough';
-  String email = 'Besslan.bazadough@gmail.com';
+  
 
+  
   @override
   Widget build(BuildContext context) {
     if (loggedin == true) {
-      return  Column(
+      return Scaffold(
+        appBar: AppBar(),
+        drawer: DrawerNavigation(),
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           verticalDirection: VerticalDirection.down,
           children: <Widget>[
@@ -32,13 +40,7 @@ class ProfileState extends State<Profile> {
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                     child: Text(
-                      'Name: $name',
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-                    child: Text(
-                      'Email: $email',
+                      'Email: ${widget.user.email}',
                     ),
                   ),
                 ],
@@ -85,11 +87,11 @@ class ProfileState extends State<Profile> {
                             onPressed: () {},
                           ),
                           RaisedButton(
-                            child: Text('data'),
+                            child: Text('Chat'),
                             onPressed: () {},
                           ),
                           RaisedButton(
-                            child: Text('data'),
+                            child: Text('Vote'),
                             onPressed: () {},
                           ),
                         ],
@@ -98,8 +100,8 @@ class ProfileState extends State<Profile> {
               ),
             ),
           ],
-        );
-
+        ),
+      );
     }
 
     return Scaffold(

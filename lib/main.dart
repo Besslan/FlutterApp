@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/home.dart';
 import 'src/sprints/functions.dart';
-import 'src/profile.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -33,13 +33,13 @@ class MyApp extends StatelessWidget {
       },
     );
     }
-     else if (settings.name == '/Profile') {
-      return MaterialPageRoute(
-      builder: (context) {
-        return Profile();
-      },
-    );
-    }
+    //  else if (settings.name == '/Profile') {
+    //   return MaterialPageRoute(
+    //   builder: (context) {
+    //     return Profile();
+    //   },
+    // );
+    // }
     return   MaterialPageRoute(
       builder: (context) {
         return HomePage();
