@@ -37,6 +37,13 @@ class ProfileState extends State<Profile> {
                       maxRadius: 80,
                     ),
                   ),
+                   FlatButton(
+              child: Text(
+                'Upload profile picture',
+                style: TextStyle(color: Colors.blueGrey[800]),
+              ),
+              onPressed: () {},
+            ),
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                     child: Text(
