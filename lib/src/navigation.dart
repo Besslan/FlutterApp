@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'drawer.dart';
 import 'homePageBody.dart';
 import 'login.dart';
-import 'profile.dart';
+
 class Navigation extends StatefulWidget {
   Navigation({Key key}) : super(key: key);
 

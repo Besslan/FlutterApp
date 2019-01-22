@@ -11,20 +11,41 @@ class Profile extends StatefulWidget {
 }
 
 class ProfileState extends State<Profile> {
-  bool loggedin = true;
   String profilePicture = 'assets/small-Logo.png';
-  
-
-  
+  String email;
   @override
   Widget build(BuildContext context) {
-    if (loggedin == true) {
+    email = widget.user.email;
+    if (email != null) {
       return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Profile page'),
+          backgroundColor: Colors.pinkAccent[700],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (int index) {
+            if (index == 1) {
+              setState(() {
+                   email = null;           
+                            });
+              Navigator.pushNamed(context, '/');
+            }
+            print(index);
+          },
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home), title: Text('Home')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.lock_outline), title: Text('LogOut')),
+          ],
+        ),
         drawer: DrawerNavigation(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          verticalDirection: VerticalDirection.down,
+        body: GridView.count(
+            physics: const NeverScrollableScrollPhysics(),
+          primary: false,
+          childAspectRatio: 1.2,
+          crossAxisCount: 1,
           children: <Widget>[
             Card(
               child: Column(
@@ -37,13 +58,13 @@ class ProfileState extends State<Profile> {
                       maxRadius: 80,
                     ),
                   ),
-                   FlatButton(
-              child: Text(
-                'Upload profile picture',
-                style: TextStyle(color: Colors.blueGrey[800]),
-              ),
-              onPressed: () {},
-            ),
+                  FlatButton(
+                    child: Text(
+                      'Upload profile picture',
+                      style: TextStyle(color: Colors.blueGrey[800]),
+                    ),
+                    onPressed: () {},
+                  ),
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                     child: Text(
@@ -53,59 +74,123 @@ class ProfileState extends State<Profile> {
                 ],
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                      margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          RaisedButton(
-                            child: Text('Surveys'),
-                            onPressed: () {},
-                          ),
-                          RaisedButton(
-                            child: Text('Emotional'),
-                            onPressed: () {},
-                          ),
-                          RaisedButton(
-                            child: Text('Calander'),
-                            onPressed: () {},
-                          ),
-                          RaisedButton(
-                            child: Text('Logout'),
-                            onPressed: () {},
-                          ),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          RaisedButton(
-                            child: Text('Townhall'),
-                            onPressed: () {},
-                          ),
-                          RaisedButton(
-                            child: Text('Help Desk'),
-                            onPressed: () {},
-                          ),
-                          RaisedButton(
-                            child: Text('Chat'),
-                            onPressed: () {},
-                          ),
-                          RaisedButton(
-                            child: Text('Vote'),
-                            onPressed: () {},
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            ),
+            GridView.count(
+              childAspectRatio: 2.0,
+              crossAxisCount: 3,
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('Calender'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('Surveys'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('Calender'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('HelpDesk'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('TownHall'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('Chat'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text(
+                      'Emotional Health',
+                      textAlign: TextAlign.center,
+                    ),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('Material'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text('Quizzes'),
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       );
