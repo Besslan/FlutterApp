@@ -57,35 +57,30 @@ class DrawerNavigation extends StatelessWidget {
                       Navigator.pushNamed(context, '/${element[1]}');
                     },
                   ),
-                  PopupMenuDivider(),
                   ListTile(
                     title: Text(element[2]),
                     onTap: () {
                       Navigator.pushNamed(context, '/${element[2]}');
                     },
-                  ),
-                  PopupMenuDivider(),
+                  ), 
                   ListTile(
                     title: Text(element[3]),
                     onTap: () {
                       Navigator.pushNamed(context, '/${element[3]}');
                     },
                   ),
-                  PopupMenuDivider(),
                   ListTile(
                     title: Text(element[4]),
                     onTap: () {
                       Navigator.pushNamed(context, '/${element[4]}');
                     },
                   ),
-                  PopupMenuDivider(),
                   ListTile(
                     title: Text(element[5]),
                     onTap: () {
                       Navigator.pushNamed(context, '/${element[5]}');
                     },
                   ),
-                  PopupMenuDivider(),
                 ],
               );
             } else {
@@ -98,21 +93,18 @@ class DrawerNavigation extends StatelessWidget {
                       Navigator.pushNamed(context, '/${element[1]}');
                     },
                   ),
-                  PopupMenuDivider(),
                   ListTile(
                     title: Text(element[2]),
                     onTap: () {
                       Navigator.pushNamed(context, '/${element[2]}');
                     },
-                  ),
-                  PopupMenuDivider(),
+                  ),    
                   ListTile(
                     title: Text(element[3]),
                     onTap: () {
                       Navigator.pushNamed(context, '/${element[3]}');
                     },
-                  ),
-                  PopupMenuDivider(),
+                  ), 
                 ],
               );
             }
@@ -124,22 +116,18 @@ class DrawerNavigation extends StatelessWidget {
                 title: Text("Week One Quiz"),
                 onTap: () {},
               ),
-              PopupMenuDivider(),
               ListTile(
                 title: Text("Week Two Quiz"),
                 onTap: () {},
               ),
-              PopupMenuDivider(),
               ListTile(
                 title: Text("Week Three Quiz"),
                 onTap: () {},
               ),
-              PopupMenuDivider(),
               ListTile(
                 title: Text("Week four Quiz"),
                 onTap: () {},
               ),
-              PopupMenuDivider(),
             ],
           ),
         ],
