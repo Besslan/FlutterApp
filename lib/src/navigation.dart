@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
 import 'homePageBody.dart';
-import 'login.dart';
+// import 'login.dart';
+import 'bloclogin.dart';
 
 class Navigation extends StatefulWidget {
   Navigation({Key key}) : super(key: key);
@@ -14,7 +15,7 @@ class NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
   final _widgetOptions = [
     HomePageBody(),
-    LoginPage(),
+    BlocLogIn(),
     // Profile(),
   ];
 
