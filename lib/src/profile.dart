@@ -45,7 +45,7 @@ class Profile extends StatelessWidget{
             signOut();
             Navigator.pushNamed(context, '/');
           }
-          print(index);
+           Navigator.pushNamed(context, '/');
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
