@@ -2,44 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'drawer.dart';
 import 'dart:async';
+import 'blocs/bloc.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key key, @required this.user}) : super(key: key);
-  final FirebaseUser user;
 
+class Profile extends StatelessWidget{
+  final String profilePicture = 'assets/small-Logo.png';
+  final String email = bloc.getValues()[0];
   @override
-  ProfileState createState() => new ProfileState();
-}
-
-class ProfileState extends State<Profile> {
-  String profilePicture = 'assets/small-Logo.png';
-
-  @override
-  Widget build(BuildContext context) {
-    return new StreamBuilder<FirebaseUser>(
+    Widget build(BuildContext context) {
+      
+      return  new StreamBuilder<FirebaseUser>(
         stream: FirebaseAuth.instance.onAuthStateChanged,
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Image.asset(profilePicture);
           } else {
             if (snapshot.hasData) {
-              return profilePage();
+              return profilePage(context);
             }
 
             return logInAgain();
           }
         });
-  }
 
-  // Future<void> getCurrentUser() async {
-  //   var user = await FirebaseAuth.instance.currentUser();
-  // }
 
-  Future<void> signOut() async {
+    }
+      Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
   }
 
-  Widget profilePage() {
+
+   Widget profilePage(context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -93,7 +86,7 @@ class ProfileState extends State<Profile> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                   child: Text(
-                    'Email: ${widget.user.email}',
+                    'Email: $email',
                   ),
                 ),
               ],
@@ -230,7 +223,9 @@ class ProfileState extends State<Profile> {
     );
   }
 
-  Widget logInAgain() {
+
+
+    Widget logInAgain() {
 //     const timeout = const Duration(seconds: 3);
 //     const ms = const Duration(milliseconds: 1);
 
@@ -252,4 +247,5 @@ class ProfileState extends State<Profile> {
       ),
     );
   }
+
 }

@@ -3,6 +3,7 @@ import 'drawer.dart';
 import 'homePageBody.dart';
 // import 'login.dart';
 import 'bloclogin.dart';
+import 'profile.dart';
 
 class Navigation extends StatefulWidget {
   Navigation({Key key}) : super(key: key);
@@ -36,8 +37,8 @@ class NavigationState extends State<Navigation> {
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(
               icon: Icon(Icons.vpn_key), title: Text('Login')),
-          // BottomNavigationBarItem(
-          //     icon: Icon(Icons.account_box), title: Text('Profile')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), title: Text('Profile')),
         ],
         currentIndex: _selectedIndex,
         fixedColor: Colors.deepPurple,
@@ -47,6 +48,14 @@ class NavigationState extends State<Navigation> {
   }
 
   void _onItemTapped(int index) {
+    
+    if (index == 2){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Profile()),
+      );
+      return null;
+    }
     setState(() {
       _selectedIndex = index;
     });
