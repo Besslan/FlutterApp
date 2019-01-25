@@ -1,38 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'drawer.dart';
-import 'dart:async';
-import 'blocs/bloc.dart';
 
-
-class Profile extends StatelessWidget{
+class Profile extends StatelessWidget {
+  final email = SharedPreferencesHelper.getEmail();
   final String profilePicture = 'assets/small-Logo.png';
-  final String email = bloc.getValues()[0];
   @override
-    Widget build(BuildContext context) {
-      
-      return  new StreamBuilder<FirebaseUser>(
-        stream: FirebaseAuth.instance.onAuthStateChanged,
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Image.asset(profilePicture);
-          } else {
-            if (snapshot.hasData) {
-              return profilePage(context);
-            }
-
-            return logInAgain();
-          }
-        });
-
-
-    }
-      Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder<String>(
+          future: SharedPreferencesHelper.getLoginStatus(),
+          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+            return snapshot.hasData ? profilePage(context) : logInAgain();
+          }),
+    );
   }
 
-
-   Widget profilePage(context) {
+  Widget profilePage(context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -45,7 +30,7 @@ class Profile extends StatelessWidget{
             signOut();
             Navigator.pushNamed(context, '/');
           }
-           Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/');
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -85,8 +70,14 @@ class Profile extends StatelessWidget{
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-                  child: Text(
-                    'Email: $email',
+                  child: FutureBuilder(
+                    future: SharedPreferencesHelper.getEmail(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      return snapshot.hasData
+                          ? Text('Email: ${snapshot.data}')
+                          : Container();
+                    },
                   ),
                 ),
               ],
@@ -223,21 +214,7 @@ class Profile extends StatelessWidget{
     );
   }
 
-
-
-    Widget logInAgain() {
-//     const timeout = const Duration(seconds: 3);
-//     const ms = const Duration(milliseconds: 1);
-
-// void handleTimeout() {  // callback function
-//  Navigator.pushNamed(context, '/');
-// }
-// startTimeout([int milliseconds]) {
-//   var duration = milliseconds == null ? timeout : ms * milliseconds;
-//   return new Timer(duration, handleTimeout);
-// }
-// startTimeout(3000);
-
+  Widget logInAgain() {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent[700],
@@ -248,4 +225,25 @@ class Profile extends StatelessWidget{
     );
   }
 
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('loggedin');
+     prefs.remove('email');
+
+  }
+}
+
+class SharedPreferencesHelper {
+  static Future<String> getLoginStatus() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString('loggedin');
+  }
+
+  static Future<String> getEmail() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString('email');
+  }
 }
