@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'drawer.dart';
+import 'sharedPrefs.dart';
 
 class Profile extends StatelessWidget {
   final email = SharedPreferencesHelper.getEmail();
@@ -227,23 +228,6 @@ class Profile extends StatelessWidget {
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('loggedin');
-     prefs.remove('email');
-
-  }
-}
-
-class SharedPreferencesHelper {
-  static Future<String> getLoginStatus() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    return prefs.getString('loggedin');
-  }
-
-  static Future<String> getEmail() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    return prefs.getString('email');
+    await SharedPreferencesHelper.signOut();
   }
 }
