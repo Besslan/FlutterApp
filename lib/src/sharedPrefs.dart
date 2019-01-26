@@ -13,9 +13,15 @@ class SharedPreferencesHelper {
     return prefs.getString('email');
   }
 
-   static Future<void> signIn(email) async {
+  static Future<void> signIn(email) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('loggedin', 'true');
     await prefs.setString('email', email);
+  }
+
+  static Future<void> signOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('loggedin');
+    prefs.remove('email');
   }
 }
