@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'drawer.dart';
 import 'sharedPrefs.dart';
@@ -61,7 +62,9 @@ class Profile extends StatelessWidget {
                     'Upload profile picture',
                     style: TextStyle(color: Colors.blueGrey[800]),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
@@ -148,157 +151,3 @@ class Profile extends StatelessWidget {
     await SharedPreferencesHelper.signOut();
   }
 }
-
-
-
-
-// gridInfo.map((element)=> Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text(element[0]),
-//             textColor: Colors.white,
-//             onPressed: () {
-//               Navigator.pushNamed(context, element[1]);
-//             },
-//           ),
-//         ),).toList();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('Calender'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('Surveys'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('Calender'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('HelpDesk'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('TownHall'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('Chat'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text(
-//               'Emotional Health',
-//               textAlign: TextAlign.center,
-//             ),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('Material'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             border: Border.all(color: Colors.white),
-//           ),
-//           child: RaisedButton(
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//             color: Colors.pinkAccent[700],
-//             child: Text('Quizzes'),
-//             textColor: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ),
