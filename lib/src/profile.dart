@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'drawer.dart';
 import 'sharedPrefs.dart';
@@ -7,6 +6,19 @@ import 'sharedPrefs.dart';
 class Profile extends StatelessWidget {
   final email = SharedPreferencesHelper.getEmail();
   final String profilePicture = 'assets/small-Logo.png';
+
+  final List<List> gridInfo = [
+    ['Calender', '/Calender'],
+    ['Surveys', '/Surveys'],
+    ['HelpDesk', '/HelpDesk'],
+    ['TownHall', '/TownHall'],
+    ['Chat', '/Chat'],
+    ['Emotional Health', '/Emotional Health'],
+    ['Material', '/Material'],
+    ['Quizzes', '/Quizzes'],
+    ['Quizzes', '/Quizzes'],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,25 +37,7 @@ class Profile extends StatelessWidget {
         title: Text('Profile page'),
         backgroundColor: Colors.pinkAccent[700],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (int index) {
-          if (index == 1) {
-            signOut();
-            Navigator.pushNamed(context, '/');
-          }
-          Navigator.pushNamed(context, '/');
-        },
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lock_outline),
-            title: Text('LogOut'),
-          ),
-        ],
-      ),
+      bottomNavigationBar: bottomNavBar(context),
       drawer: DrawerNavigation(),
       body: GridView.count(
         physics: const NeverScrollableScrollPhysics(),
@@ -84,132 +78,7 @@ class Profile extends StatelessWidget {
               ],
             ),
           ),
-          GridView.count(
-            childAspectRatio: 2.0,
-            crossAxisCount: 3,
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('Calender'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('Surveys'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('Calender'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('HelpDesk'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('TownHall'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('Chat'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text(
-                    'Emotional Health',
-                    textAlign: TextAlign.center,
-                  ),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('Material'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                ),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: Colors.pinkAccent[700],
-                  child: Text('Quizzes'),
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          )
+          gridCount(context),
         ],
       ),
     );
@@ -226,8 +95,210 @@ class Profile extends StatelessWidget {
     );
   }
 
+  Widget gridCount(context) {
+    
+
+    return GridView.count(
+      childAspectRatio: 2.0,
+      crossAxisCount: 3,
+      children: gridInfo.map((element)=> Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white),
+          ),
+          child: RaisedButton(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            color: Colors.pinkAccent[700],
+            child: Text(element[0],
+             textAlign: TextAlign.center,),
+            textColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, element[1]);
+            },
+          ),
+        ),).toList()
+,
+    );
+  }
+
+  Widget bottomNavBar(context) {
+    return BottomNavigationBar(
+      onTap: (int index) {
+        if (index == 1) {
+          signOut();
+          Navigator.pushNamed(context, '/');
+        }
+        Navigator.pushNamed(context, '/');
+      },
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.lock_outline),
+          title: Text('LogOut'),
+        ),
+      ],
+    );
+  }
+
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     await SharedPreferencesHelper.signOut();
   }
 }
+
+
+
+
+// gridInfo.map((element)=> Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text(element[0]),
+//             textColor: Colors.white,
+//             onPressed: () {
+//               Navigator.pushNamed(context, element[1]);
+//             },
+//           ),
+//         ),).toList();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('Calender'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('Surveys'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('Calender'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('HelpDesk'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('TownHall'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('Chat'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text(
+//               'Emotional Health',
+//               textAlign: TextAlign.center,
+//             ),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('Material'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Colors.white),
+//           ),
+//           child: RaisedButton(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+//             color: Colors.pinkAccent[700],
+//             child: Text('Quizzes'),
+//             textColor: Colors.white,
+//             onPressed: () {},
+//           ),
+//         ),
