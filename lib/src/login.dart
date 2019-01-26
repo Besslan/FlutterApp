@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'sharedPrefs.dart';
 import 'profile.dart';
 import './blocs/bloc.dart';
 
@@ -32,9 +32,8 @@ class BlocLogIn extends StatelessWidget {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('loggedin', 'true');
-
+      
+          SharedPreferencesHelper.signIn(email);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Profile()),
@@ -42,9 +41,6 @@ class BlocLogIn extends StatelessWidget {
     } catch (err) {
       print(err.message);
     }
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('loggedin', 'true');
-    await prefs.setString('email', email);
   }
 
   Widget emailFeild() {
