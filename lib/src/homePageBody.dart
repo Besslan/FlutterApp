@@ -32,7 +32,7 @@ class HomePageBodyState extends State<HomePageBody> {
       'assets/Logo.png',
       'Introduction to week three:Reduce, DataModeling, AbstractClosureDM,  OOP,HTMLCSSjQuery ',
       'Reduce',
-      'DataModeling',
+      'Methods',
       'AbstractClosureDM',
       'OOP',
       'HTMLCSSjQuery'
@@ -43,7 +43,7 @@ class HomePageBodyState extends State<HomePageBody> {
       'Introduction to week four:Git, Testing, WebDev',
       'Git',
       'Testing',
-      'WebDev',
+      'Web Development',
     ]
   ];
 

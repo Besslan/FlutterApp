@@ -21,7 +21,7 @@ class DrawerNavigation extends StatelessWidget {
     [
       'Week Three',
       'Reduce',
-      'DataModeling',
+      'Methods',
       'AbstractClosureDM',
       'OOP',
       'HTMLCSSjQuery'
@@ -30,7 +30,7 @@ class DrawerNavigation extends StatelessWidget {
       'Week Four',
       'Git',
       'Testing',
-      'WebDev',
+      'Web Development',
     ]
   ];
   @override
