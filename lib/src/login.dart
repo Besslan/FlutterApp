@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'sharedPrefs.dart';
 import 'profile.dart';
 import './blocs/bloc.dart';
+import 'dart:async';
 
 class BlocLogIn extends StatelessWidget {
   @override
