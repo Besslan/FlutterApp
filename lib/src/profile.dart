@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'drawer.dart';
 import 'dart:async';
+import 'dart:math';
+import 'dart:io';
 import 'sharedPrefs.dart';
 
 class Profile extends StatelessWidget {
@@ -64,9 +66,7 @@ class Profile extends StatelessWidget {
                     'Upload profile picture',
                     style: TextStyle(color: Colors.blueGrey[800]),
                   ),
-                  onPressed: () {
-                    
-                  },
+                  onPressed:uploadImage,
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
@@ -101,28 +101,31 @@ class Profile extends StatelessWidget {
   }
 
   Widget gridCount(context) {
-    
-
     return GridView.count(
       childAspectRatio: 2.0,
       crossAxisCount: 3,
-      children: gridInfo.map((element)=> Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white),
-          ),
-          child: RaisedButton(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            color: Colors.pinkAccent[700],
-            child: Text(element[0],
-             textAlign: TextAlign.center,),
-            textColor: Colors.white,
-            onPressed: () {
-              Navigator.pushNamed(context, element[1]);
-            },
-          ),
-        ),).toList()
-,
+      children: gridInfo
+          .map(
+            (element) => Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    color: Colors.pinkAccent[700],
+                    child: Text(
+                      element[0],
+                      textAlign: TextAlign.center,
+                    ),
+                    textColor: Colors.white,
+                    onPressed: () {
+                      Navigator.pushNamed(context, element[1]);
+                    },
+                  ),
+                ),
+          )
+          .toList(),
     );
   }
 
@@ -147,6 +150,37 @@ class Profile extends StatelessWidget {
       ],
     );
   }
+
+  Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    return image;
+  }
+
+  uploadImage() async {
+    File profilePic = await getImage();
+    var randomNumber = Random(25);
+    final StorageReference firebaseStorageRef = FirebaseStorage.instance
+        .ref()
+        .child('profilepics/${randomNumber.nextInt(5000).toString()}.jpg');
+    StorageUploadTask task = firebaseStorageRef.putFile(profilePic);
+ 
+    task.onComplete.then((value){
+
+    }).catchError((err){
+      print(err);
+    });
+  }
+
+  // updateProfilePic(picUrl) async{
+  //   var userInfo = new UserUpdateInfo();
+  //   userInfo.photoUrl = picUrl;
+
+  //   var user = await FirebaseAuth.instance.currentUser();
+  //   await user.updateProfile(userInfo);
+
+  //   FirebaseStorage.instance.
+    
+  // }
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
