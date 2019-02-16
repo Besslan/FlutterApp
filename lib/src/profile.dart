@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'drawer.dart';
 import 'dart:async';
 import 'dart:math';
@@ -158,29 +159,45 @@ class Profile extends StatelessWidget {
 
   uploadImage() async {
     File profilePic = await getImage();
-    var randomNumber = Random(25);
+    var randomNumber = Random();
     final StorageReference firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child('profilepics/${randomNumber.nextInt(5000).toString()}.jpg');
     StorageUploadTask task = firebaseStorageRef.putFile(profilePic);
- 
-    task.onComplete.then((value){
-
+print('uploaded');
+    task.onComplete.then((picUrl){
+      updateProfilePic(picUrl.uploadSessionUri.toString());
     }).catchError((err){
       print(err);
     });
   }
 
-  // updateProfilePic(picUrl) async{
-  //   var userInfo = new UserUpdateInfo();
-  //   userInfo.photoUrl = picUrl;
+  updateProfilePic(picUrl) async{
+    var userInfo = new UserUpdateInfo();
+    userInfo.photoUrl = picUrl;
+ 
 
-  //   var user = await FirebaseAuth.instance.currentUser();
-  //   await user.updateProfile(userInfo);
-
-  //   FirebaseStorage.instance.
+    var user = await FirebaseAuth.instance.currentUser();
+    user.updateProfile(userInfo);
+  
+    Firestore.instance.collection('/users')
+    .where('uid', isEqualTo: user.uid)
+    .getDocuments()
+    .then((docs){
+      print(docs);
+      Firestore.instance.document('/users/${docs.documents[0].documentID}')
+      .updateData({'photoURL':picUrl})
+      .then((onValue){
+        print('Updated Profile Picture');
+      }).catchError((err){
+        print(err);
+      });
+    })
+    .catchError((err){
+      print(err);
+    });
     
-  // }
+  }
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
